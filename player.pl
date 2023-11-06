@@ -23,7 +23,7 @@ current_player_wall(SinglePiece) :-
 
 current_player_tower(Tower) :-
     current_player(Current),
-    (Current = 'white' -> SinglePiece = 'w-tower' ; Current = 'black' -> SinglePiece = 'b-tower').
+    (Current = 'white' -> Tower = 'w-tower' ; Current = 'black' -> Tower = 'b-tower').
 
 opposite_player_wall(SinglePiece) :-
     current_player(Current),

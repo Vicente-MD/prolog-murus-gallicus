@@ -1,5 +1,5 @@
 % Define the board as an 8x7 array.
-initial_board([
+initial_state([
     ['w-tower', 'w-tower', 'w-tower', 'w-tower', 'w-tower', 'w-tower', 'w-tower', 'w-tower'],
     ['       ', '       ', '       ', '       ', '       ', '       ', '       ', '       '],
     ['       ', '       ', '       ', '       ', '       ', '       ', '       ', '       '],
@@ -9,8 +9,9 @@ initial_board([
     ['b-tower', 'b-tower', 'b-tower', 'b-tower', 'b-tower', 'b-tower', 'b-tower', 'b-tower']
 ]).
 
-% Predicate to display the board.
-display_board(Board) :- nl,nl,print_board(Board),nl.
+
+display_game(GameState) :- nl,nl,print_board(GameState),nl.
+
 
 
 % Print the board.
