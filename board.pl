@@ -41,3 +41,7 @@ print_row([Cell | Rest]) :-
 print_column_labels :- 
     write('        A          B         C         D         E         F         G         H'), 
     nl.
+
+game_over(GameState, Winner) :- 
+    format('Player ~w wins!!!', [Winner]), nl,
+    display_game(GameState).

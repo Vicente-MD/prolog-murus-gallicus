@@ -6,6 +6,7 @@
 :- consult('player.pl').
 :- consult('utils.pl').
 :- consult('pvp.pl').
+:- consult('board.pl').
 
 play_pvb(Player, Board) :-
     format('##### Current Player: ~w #####', [Player]), nl,
@@ -24,7 +25,7 @@ play_pvb(Player, Board) :-
                 display_game(NewBoard),
                 (
                     is_win_condition(Player, EndRow) ->
-                    format('Player controlling the ~w pieces wins by reaching the opponent\'s first row!', [Player]), nl
+                    game_over(NewBoard, Player)
                     ;
                     change_player(Player, NextPlayer),
                     play_pvb(NextPlayer, NewBoard)

@@ -35,7 +35,7 @@ play_pvp(Board) :-
         ),
         (
             (is_win_condition(Player, EndRowInt) ->
-            format('Player controlling the ~w pieces wins by reaching the opponent\'s first row!', [Player]), nl
+            game_over(Board, Player)
             ;
             % switch_players(Player, SoloPiece, Opponent, SoloOpponent, NextPlayer, NextSoloPiece, OtherOpponent, NextSoloOpponent),
             % play_pvp(NewBoard, NextPlayer, NextSoloPiece, OtherOpponent, NextSoloOpponent)
@@ -44,7 +44,7 @@ play_pvp(Board) :-
             )
         )
         ;
-        format('Player ~w has no valid moves left. Player ~w wins!', [Player, Opponent]), nl
+        game_over(Board, Opponent)
     ).
 
 % Rule to check if a value is present in any sublist of a list of lists.
@@ -63,13 +63,11 @@ is_win_condition(Player, EndRowInt) :-
 % Read and validate players move.
 read_and_validate_move(StartColumn, StartRow, EndColumn, EndRow, StartColIndex, EndColIndex, StartRowInt, EndRowInt) :-
     (
-        write('..vou ler...'), nl,
         attempt_move(StartColumn, StartRow, EndColumn, EndRow, StartColIndex, EndColIndex, StartRowInt, EndRowInt) ->
         (
             % Verifique se o movimento final é possível
             possible_moves(StartColIndex, StartRowInt, PossibleMoves),
-            write(PossibleMoves), nl,
-            write(EndColIndex), write(EndRowInt), nl,
+            write('possible moves: '),write(PossibleMoves), nl,
             (member((EndColIndex, EndRowInt), PossibleMoves) ->
                 true
             ; 
